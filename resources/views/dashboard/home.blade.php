@@ -26,7 +26,7 @@
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Students</h6>
-                                <h3>50055</h3>
+                                <h3>{{$totalStudent}}</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="{{ URL::to('assets/img/icons/dash-icon-01.svg') }}" alt="Dashboard Icon">
@@ -40,8 +40,8 @@
                     <div class="card-body">
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
-                                <h6>Awards</h6>
-                                <h3>50+</h3>
+                                <h6>Teacher</h6>
+                                <h3>{{$totalTeacher}}</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="{{ URL::to('assets/img/icons/dash-icon-02.svg') }}" alt="Dashboard Icon">
@@ -56,7 +56,7 @@
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Department</h6>
-                                <h3>30+</h3>
+                                <h3>{{$totalDepartment}}</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="{{ URL::to('assets/img/icons/dash-icon-03.svg') }}" alt="Dashboard Icon">
@@ -71,7 +71,7 @@
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Revenue</h6>
-                                <h3>$505</h3>
+                                <h3>$9999</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
@@ -80,9 +80,72 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                <div class="card bg-comman w-100">
+                    <div class="card-body">
+                        <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-info">
+                                <h6>Revenue</h6>
+                                <h3>$9999</h3>
+                            </div>
+                            <div class="db-icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                <div class="card bg-comman w-100">
+                    <div class="card-body">
+                        <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-info">
+                                <h6>Revenue</h6>
+                                <h3>$9999</h3>
+                            </div>
+                            <div class="db-icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                <div class="card bg-comman w-100">
+                    <div class="card-body">
+                        <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-info">
+                                <h6>Revenue</h6>
+                                <h3>$9999</h3>
+                            </div>
+                            <div class="db-icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                <div class="card bg-comman w-100">
+                    <div class="card-body">
+                        <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-info">
+                                <h6>Revenue</h6>
+                                <h3>$9999</h3>
+                            </div>
+                            <div class="db-icon">
+                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="row">
+        </div>
+        
+    {{------------------------------------Chart---------------------------------------}}
+
+        {{-- <div class="row">
             <div class="col-md-12 col-lg-6">
 
                 <div class="card card-chart">
@@ -131,8 +194,13 @@
                 </div>
 
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+
+    {{------------------------------------ُEndChart-------------------------------------}}
+
+    {{------------------------------------ُstars student--------------------------------}}
+
+        {{-- <div class="row">
             <div class="col-xl-6 d-flex">
 
                 <div class="card flex-fill student-space comman-shadow">
@@ -239,7 +307,9 @@
                 </div>
 
             </div>
-            <div class="col-xl-6 d-flex">
+            {{------------------------------------To-do list---------------------------------------}}
+
+            {{-- <div class="col-xl-6 d-flex">
 
                 <div class="card flex-fill comman-shadow">
                     <div class="card-header d-flex align-items-center">
@@ -303,8 +373,16 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div> --}}
+
+
+            {{------------------------------------To-do list---------------------------------------}}
+
+        {{-- </div> --}}
+
+    {{------------------------------------ُ-End stars student-----------------------------}}
+
+    {{------------------------------------ُ-Social networking-----------------------------}}
 
         <div class="row">
             <div class="col-xl-3 col-sm-6 col-12">
@@ -352,6 +430,10 @@
                 </div>
             </div>
         </div>
+
+    {{------------------------------------ُ-End Social networking--------------------------}}
+
+
     </div>
 </div>
 @endsection

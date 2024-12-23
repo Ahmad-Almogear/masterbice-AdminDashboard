@@ -24,4 +24,18 @@ class Teacher extends Model
         'zip_code',
         'country',
     ];
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
+
+    public function grtdes()
+    {
+        return $this->hasMany(Grade::class);
+    }
+    public function departments()
+    {
+    return $this->belongsToMany(Department::class, 'department_teacher');
+    }
 }

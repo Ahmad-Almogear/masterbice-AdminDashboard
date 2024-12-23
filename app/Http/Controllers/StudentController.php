@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -47,7 +48,8 @@ class StudentController extends Controller
             'section'       => 'required|string',
             'admission_id'  => 'required|string',
             'phone_number'  => 'required',
-            'upload'        => 'required|image',
+            'upload'        => 'image',
+            'department_id' => 'required'
         ]);
         
         DB::beginTransaction();
@@ -59,6 +61,7 @@ class StudentController extends Controller
                 $student = new Student;
                 $student->first_name   = $request->first_name;
                 $student->last_name    = $request->last_name;
+                $student->department_id= $request->department_id;
                 $student->gender       = $request->gender;
                 $student->date_of_birth= $request->date_of_birth;
                 $student->roll         = $request->roll;
@@ -148,5 +151,12 @@ class StudentController extends Controller
     {
         $studentProfile = Student::where('id',$id)->first();
         return view('student.student-profile',compact('studentProfile'));
+    }
+
+
+    public function show($id)
+    {
+        $student = Student::with('grade.Subject')->findOrFail($id);
+        return view('student.show', compact('student'));
     }
 }

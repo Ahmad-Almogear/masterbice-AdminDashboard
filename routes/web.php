@@ -13,10 +13,10 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Setting;
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\ContactUsController;
+
 use Illuminate\Support\Facades\Auth;
-
-
-
 
 
 /*
@@ -171,4 +171,31 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('add/fees/collection/page', 'addFeesCollection')->middleware('auth')->name('add/fees/collection/page'); // add/fees/collection
         Route::post('fees/collection/save', 'saveRecord')->middleware('auth')->name('fees/collection/save'); // fees/collection/save
     });
-});
+
+
+    Route::controller(ThemeController::class)->group(function(){
+        Route::get('/welcome' ,'welcome')->name('welcome');
+        Route::get('/about' ,'about')->name('about');
+        Route::get('/blog' ,'blog')->name('blog');
+        Route::get('/footer' ,'footer')->name('footer');
+        Route::get('/header' ,'header')->name('header');
+        Route::get('/main_header' ,'main_header')->name('main_header');
+        Route::get('/service' ,'service')->name('service');
+        Route::get('/team' ,'team')->name('team');
+        Route::get('/testimonial' ,'testimonial')->name('testimonial');
+        Route::get('/master' , 'master')->name('master');
+        Route::get('/event' , 'event')->name('event');
+        Route::get('/program' , 'program')->name('program');
+        Route::get('/review' , 'review')->name('review');
+    });
+            // Route::get('/contact' ,'contact')->name('contact');
+    Route::get('/contact-us', [ContactUsController::class, 'create'])->name('contact_us.create');
+    Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
+
+
+
+
+
+        
+
+}); 

@@ -62,7 +62,7 @@
                                                 <option selected disabled>Select Gender</option>
                                                 <option value="Female" {{ old('gender') == 'Female' ? "selected" :"Female"}}>Female</option>
                                                 <option value="Male" {{ old('gender') == 'Male' ? "selected" :""}}>Male</option>
-                                                <option value="Others" {{ old('gender') == 'Others' ? "selected" :""}}>Others</option>
+                                                {{-- <option value="Others" {{ old('gender') == 'Others' ? "selected" :""}}>Others</option> --}}
                                             </select>
                                             @error('gender')
                                                 <span class="invalid-feedback" role="alert">
@@ -144,6 +144,22 @@
                                                 <option value="12" {{ old('class') == '12' ? "selected" :""}}>12</option>
                                                 <option value="11" {{ old('class') == '11' ? "selected" :""}}>11</option>
                                                 <option value="10" {{ old('class') == '10' ? "selected" :""}}>10</option>
+                                            </select>
+                                            @error('class')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Department <span class="login-danger">*</span></label>
+                                            <select class="form-control select @error('class') is-invalid @enderror" name="class">
+                                                <option selected disabled>Please Select Class </option>
+                                                <option value="1" {{ old('department_id') == '1' ? "selected" :""}}>1</option>
+                                                <option value="2" {{ old('department_id') == '2' ? "selected" :""}}>2</option>
+                                                <option value="3" {{ old('department_id') == '3' ? "selected" :""}}>3</option>
                                             </select>
                                             @error('class')
                                                 <span class="invalid-feedback" role="alert">

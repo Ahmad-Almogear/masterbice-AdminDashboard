@@ -4,6 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Student;
+use App\Models\Teacher;
+
+
+
+
+
 
 class Department extends Model
 {
@@ -15,6 +22,16 @@ class Department extends Model
         'department_start_date',
         'no_of_students',
     ];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+    public function teachers()
+{
+    return $this->belongsToMany(Teacher::class, 'department_teacher');
+}
+
 
     protected static function boot()
     {

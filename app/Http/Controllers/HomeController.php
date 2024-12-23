@@ -24,12 +24,18 @@ class HomeController extends Controller
     /** home dashboard */
     public function index()
     {
-        return view('dashboard.home');
+        $totalStudent = \App\Models\Student::count();
+        $totalDepartment = \App\Models\Department::count();
+        $totalTeacher = \App\Models\Teacher::count();
+
+        // $user = auth()->user();
+        return view('dashboard.home',compact('totalStudent','totalDepartment', 'totalTeacher'));
     }
 
     /** profile user */
     public function userProfile()
     {
+        $user = auth()->user();
         return view('dashboard.profile');
     }
 
