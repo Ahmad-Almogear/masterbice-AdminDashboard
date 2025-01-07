@@ -17,9 +17,10 @@
                         <div class="service-content-inner">
                             <div class="p-4"><i class="fas fa-gamepad fa-6x text-primary"></i></div>
                             <a href="#" class="h4">Study & Game</a>
-                            <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                            <p class="my-3">At Kidnova, we blend learning with play, fostering creativity and problem-solving through interactive games that engage and educate children.
+
+                            </p>
+                            {{-- <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -30,9 +31,8 @@
                         <div class="service-content-inner">
                             <div class="p-4"><i class="fas fa-sort-alpha-down fa-6x text-primary"></i></div>
                             <a href="#" class="h4">A to Z Programs</a>
-                            <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                            <p class="my-3"> cover all aspects of early childhood development, from cognitive skills to social and emotional growth. </p>
+                            {{-- <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -43,9 +43,8 @@
                         <div class="service-content-inner">
                             <div class="p-4"><i class="fas fa-users fa-6x text-primary"></i></div>
                             <a href="#" class="h4">Expert Teacher</a>
-                            <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                            <p class="my-3">Our expert teachers are dedicated to nurturing each child's potential, providing personalized learning experiences that foster growth and success.</p>
+                            {{-- <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -56,9 +55,8 @@
                         <div class="service-content-inner">
                             <div class="p-4"><i class="fas fa-user-nurse fa-6x text-primary"></i></div>
                             <a href="#" class="h4">Mental Health</a>
-                            <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                            <p class="my-3">We prioritize mental health by creating a supportive environment where children feel safe, valued, and empowered to express themselves. </p>
+                            {{-- <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a> --}}
                         </div>
                     </div>
                 </div>

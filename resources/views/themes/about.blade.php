@@ -19,9 +19,9 @@
                     </div>
                     <div class="col-lg-7 wow fadeIn" data-wow-delay="0.3s">
                         <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">About Us</h4>
-                        <h1 class="text-dark mb-4 display-5">We Learn Smart Way To Build Bright Futute For Your Children</h1>
-                        <p class="text-dark mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                        </p>
+                        <h1 class="text-dark mb-4 display-5">At Kidnova, we inspire children to explore, grow, and foster creativity.
+                        </h1>
+                        <p class="text-dark mb-4">At Kidnova, we believe in nurturing every child’s potential through a playful, creative, and safe environment. Our focus is on encouraging exploration, curiosity, and growth to help shape confident and capable young learners.</p>
                         <div class="row mb-4">
                             <div class="col-lg-6">
                                 <h6 class="mb-3"><i class="fas fa-check-circle me-2"></i>Sport Activites</h6>
@@ -50,13 +50,13 @@
                     <div class="modal-body">
                         <!-- 16:9 aspect ratio -->
                         <div class="ratio ratio-16x9">
-                            <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                                allow="autoplay"></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9CVrNQaxJwo?si=epHL1jhpnR2YO3HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- About End -->
         @if (Request::is('about'))
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\Teacher;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
 
 
 class DepartmentController extends Controller
@@ -14,13 +16,14 @@ class DepartmentController extends Controller
     /** index page department */
     public function indexDepartment()
     {
-        return view('department.add-department');
+        $TeacherList = Teacher::all();
+        return view('department.add-department',compact(['TeacherList']));
     }
     
     /** edit record */
-    public function editDepartment($department_id)
+    public function editDepartment($id)
     {
-        $department = Department::where('department_id',$department_id)->first();
+        $department = Department::where('id',$id)->first();
         return view('department.edit-departmen',compact('department'));
     }
 
@@ -46,11 +49,11 @@ class DepartmentController extends Controller
         $columnSortOrder = $order_arr[0]['dir']; // asc or desc
         $searchValue     = $search_arr['value']; // Search value
 
-        $departments =  DB::table('departments');
+        $departments = new Department;
         $totalRecords = $departments->count();
 
         $totalRecordsWithFilter = $departments->where(function ($query) use ($searchValue) {
-            $query->where('department_id', 'like', '%' . $searchValue . '%');
+            $query->where('id', 'like', '%' . $searchValue . '%');
             $query->orWhere('department_name', 'like', '%' . $searchValue . '%');
             $query->orWhere('head_of_department', 'like', '%' . $searchValue . '%');
             $query->orWhere('department_start_date', 'like', '%' . $searchValue . '%');
@@ -59,7 +62,7 @@ class DepartmentController extends Controller
 
         $records = $departments->orderBy($columnName, $columnSortOrder)
             ->where(function ($query) use ($searchValue) {
-                $query->where('department_id', 'like', '%' . $searchValue . '%');
+                $query->where('id', 'like', '%' . $searchValue . '%');
                 $query->orWhere('department_name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('head_of_department', 'like', '%' . $searchValue . '%');
                 $query->orWhere('department_start_date', 'like', '%' . $searchValue . '%');
@@ -75,7 +78,7 @@ class DepartmentController extends Controller
             $modify = '
                 <td class="text-end"> 
                     <div class="actions">
-                        <a href="'.url('department/edit/'.$record->department_id).'" class="btn btn-sm bg-danger-light">
+                        <a href="'.url('department/edit/'.$record->id).'" class="btn btn-sm bg-danger-light">
                             <i class="far fa-edit me-2"></i>
                         </a>
                         <a class="btn btn-sm bg-danger-light delete department_id" data-bs-toggle="modal" data-department_id="'.$record->id.'" data-bs-target="#delete">
@@ -86,7 +89,7 @@ class DepartmentController extends Controller
             ';
 
             $data_arr [] = [
-                "department_id"         => $record->department_id,
+                "user_id"                    => $record->user_id,
                 "department_name"       => $record->department_name,
                 "head_of_department"    => $record->head_of_department,
                 "department_start_date" => $record->department_start_date,
@@ -177,4 +180,14 @@ class DepartmentController extends Controller
             return redirect()->back();
         }
     }
+
+    public function create()
+    {
+        $TeacherList = Teacher::all();
+        dd($TeacherList);
+        return view('department.add-department', compact('TeacherList'));
+    }
+
+
+
 }

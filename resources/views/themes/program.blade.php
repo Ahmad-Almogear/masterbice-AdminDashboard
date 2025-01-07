@@ -12,97 +12,90 @@
             <h1 class="mb-5 display-3">We Offer An Exclusive Program For Kids</h1>
         </div>
         <div class="row g-5 justify-content-center">
+            @foreach ($pro as $program)
+
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.1s">
                 <div class="program-item rounded">
                     <div class="program-img position-relative">
                         <div class="overflow-hidden img-border-radius">
-                            <img src="{{ asset('assetsTheme') }}/img/program-1.jpg" class="img-fluid w-100" alt="Image">
+                            <img src="{{  asset('storage/programs/'. basename($program->program_image)) }}" class="img-fluid w-100" alt="Image">
                         </div>
-                        <div class="px-4 py-2 bg-primary text-white program-rate">$60.99</div>
+                        <div class="px-4 py-2 bg-primary text-white program-rate">{{ $program->price }}</div>
                     </div>
                     <div class="program-text bg-white px-4 pb-3">
                         <div class="program-text-inner">
-                            <a href="#" class="h4">English For Today</a>
-                            <p class="mt-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed purus consectetur,</p>
+                            <a href="" class="h4" data-toggle="modal" data-target="#registerModal">{{ $program->title }}</a>
+                            <p class="mt-3 mb-0">{{ $program->description }}</p>
                         </div>
                     </div>
                     <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3">
-                        <img src="{{ asset('assetsTheme') }}/img/program-teacher.jpg" class="img-fluid rounded-circle p-2 border border-primary bg-white" alt="Image" style="width: 70px; height: 70px;">
+                      {{-- <img src="{{  asset('storage/teachers/'. basename($program->teacher_image)) }}" alt="Image">  --}}
+                      <img src="{{  asset('storage/teachers/'. basename($program->teacher_image)) }}"  class="img-fluid rounded-circle p-2 border border-primary bg-white" alt="Image" style="width: 70px; height: 70px;">
                         <div class="ms-3">
-                            <h6 class="mb-0 text-primary">Mary Mordern</h6>
-                            <small>Arts Designer</small>
+                            <h6 class="mb-0 text-primary">{{ $program->teacher_name }}</h6>
+                            <small>{{ $program->teacher_specialty }}</small>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                        <small class="text-white"><i class="fas fa-wheelchair me-1"></i> 30 Sits</small>
-                        <small class="text-white"><i class="fas fa-book me-1"></i> 11 Lessons</small>
-                        <small class="text-white"><i class="fas fa-clock me-1"></i> 60 Hours</small>
+                        <small class="text-white"><i class="fas fa-wheelchair me-1"></i>{{ $program->seats }}</small>
+                        <small class="text-white"><i class="fas fa-book me-1"></i>{{ $program->lectures_count }} Lessons</small>
+                        <small class="text-white"><i class="fas fa-clock me-1"></i> {{ $program->hours_count }} Hours</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.3s">
-                <div class="program-item rounded">
-                    <div class="program-img position-relative">
-                        <div class="overflow-hidden img-border-radius">
-                            <img src="{{ asset('assetsTheme') }}/img/program-2.jpg" class="img-fluid w-100" alt="Image">
-                        </div>
-                        <div class="px-4 py-2 bg-primary text-white program-rate">$60.99</div>
-                    </div>
-                    <div class="program-text bg-white px-4 pb-3">
-                        <div class="program-text-inner">
-                            <a href="#" class="h4">Graphics Arts</a>
-                            <p class="mt-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed purus consectetur,</p>
-                        </div>
-                    </div>
-                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3">
-                        <img src="{{ asset('assetsTheme') }}/img/program-teacher.jpg" class="img-fluid rounded-circle p-2 border border-primary bg-white" alt="" style="width: 70px; height: 70px;">
-                        <div class="ms-3">
-                            <h6 class="mb-0 text-primary">Mary Mordern</h6>
-                            <small>Arts Designer</small>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                        <small class="text-white"><i class="fas fa-wheelchair me-1"></i> 30 Sits</small>
-                        <small class="text-white"><i class="fas fa-book me-1"></i> 11 Lessons</small>
-                        <small class="text-white"><i class="fas fa-clock me-1"></i> 60 Hours</small>
-                    </div>
-                </div>
+            @endforeach
+
+                   <!-- نافذة منبثقة (Popup) لإدخال بيانات التسجيل -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Register in the program
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="registerForm" method="POST" action="{{ route('/program/register') }}">
+            @csrf
+            {{-- <input type="hidden" name="program_id" value="{{ $program->program_id }}">  <!-- إضافة event_id --> --}}
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.5s">
-                <div class="program-item rounded">
-                    <div class="program-img position-relative">
-                        <div class="overflow-hidden img-border-radius">
-                            <img src="{{ asset('assetsTheme') }}/img/program-3.jpg" class="img-fluid w-100" alt="Image">
-                        </div>
-                        <div class="px-4 py-2 bg-primary text-white program-rate">$60.99</div>
-                    </div>
-                    <div class="program-text bg-white px-4 pb-3">
-                        <div class="program-text-inner">
-                            <a href="#" class="h4">General Science</a>
-                            <p class="mt-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed purus consectetur,</p>
-                        </div>
-                    </div>
-                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3">
-                        <img src="{{ asset('assetsTheme') }}/img/program-teacher.jpg" class="img-fluid rounded-circle p-2 border border-primary bg-white" alt="" style="width: 70px; height: 70px;">
-                        <div class="ms-3">
-                            <h6 class="mb-0 text-primary">Mary Mordern</h6>
-                            <small>Arts Designer</small>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                        <small class="text-white"><i class="fas fa-wheelchair me-1"></i> 30 Sits</small>
-                        <small class="text-white"><i class="fas fa-book me-1"></i> 11 Lessons</small>
-                        <small class="text-white"><i class="fas fa-clock me-1"></i> 60 Hours</small>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="text" class="form-control" id="phone" name="phone" required placeholder="Enter phone number">
             </div>
+            <div class="form-group">
+              <label for="children_count">Child's age</label>
+              <input type="number" class="form-control" id="children_count" name="children_count" required placeholder="Enter your child's age">
+            </div>
+            <div class="form-group">
+              <label for="child_name">Child's name</label>
+              <input type="text" class="form-control" id="child_name" name="child_name" required placeholder="Child's name">
+            </div>
+            <!-- يمكنك إضافة المزيد من الحقول حسب الحاجة -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">registration</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
             <div class="d-inline-block text-center wow fadeIn" data-wow-delay="0.1s">
                 <a href="#" class="btn btn-primary px-5 py-3 text-white btn-border-radius">Vew All Programs</a>
             </div>
         </div> 
     </div>
 </div>
-@if (Request::is('program'))
+
+
+@if(Request::is('program'))
 
 @include('themes.partials.footer')
 @include('themes.partials.script')

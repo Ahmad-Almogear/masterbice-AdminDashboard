@@ -198,6 +198,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-12 col-lg-12 col-xl-12 d-flex">
                             <div class="card flex-fill comman-shadow">
                                 <div class="card-header d-flex align-items-center">
@@ -267,6 +268,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-12 col-lg-12 col-xl-4 d-flex">
                     <div class="card flex-fill comman-shadow">
                         <div class="card-body">

@@ -22,6 +22,7 @@ class RegisterController extends Controller
         $role = DB::table('role_type_users')->get();
         return view('auth.register',compact('role'));
     }
+
     public function storeUser(Request $request)
     {
         $request->validate([
@@ -47,4 +48,6 @@ class RegisterController extends Controller
         Toastr::success('Create new account successfully :)','Success');
         return redirect()->route('login');
     }
+
+
 }

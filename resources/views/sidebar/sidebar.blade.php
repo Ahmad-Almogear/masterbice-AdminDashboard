@@ -2,17 +2,17 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-            @if(Session::get('role_name')=='Admin')
+            @if(Session::get('role_name')=='Admin'|| Session::get('role_name') === 'Super Admin')
 
                 <li class="menu-title">
                     <span>Main Menu</span>
-                </li>
+                {{-- </li>
                 <li class="{{set_active(['setting/page'])}}">
                     <a href="{{ route('setting/page') }}">
                         <i class="fas fa-cog"></i> 
                         <span>Settings</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="submenu {{set_active(['home','teacher/dashboard','student/dashboard'])}}">
                     <a>
                         <i class="fas fa-tachometer-alt"></i>
@@ -21,8 +21,8 @@
                     </a>
                     <ul>
                         <li><a href="{{ route('home') }}" class="{{set_active(['home'])}}">Admin Dashboard</a></li>
-                        <li><a href="{{ route('teacher/dashboard') }}" class="{{set_active(['teacher/dashboard'])}}">Teacher Dashboard</a></li>
-                        <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li>
+                        {{-- <li><a href="{{ route('teacher/dashboard') }}" class="{{set_active(['teacher/dashboard'])}}">Teacher Dashboard</a></li>
+                        <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li> --}}
                     </ul>
                 </li>
                 @if (Session::get('role_name') === 'Admin' || Session::get('role_name') === 'Super Admin')
@@ -46,8 +46,10 @@
                     <ul>
                         <li><a href="{{ route('student/list') }}"  class="{{set_active(['student/list','student/grid'])}}">Student List</a></li>
                         <li><a href="{{ route('student/add/page') }}" class="{{set_active(['student/add/page'])}}">Student Add</a></li>
-                        <li><a class="{{ (request()->is('student/edit/*')) ? 'active' : '' }}">Student Edit</a></li>
-                        <li><a href=""  class="{{ (request()->is('student/profile/*')) ? 'active' : '' }}">Student View</a></li>
+                        <li><a href="{{ route('guardians/create') }}" class="{{set_active(['/guardians/create'])}}">guardians Add</a></li>
+
+                        {{-- <li><a class="{{ (request()->is('student/edit/*')) ? 'active' : '' }}">Student Edit</a></li> --}}
+                        {{-- <li><a href=""  class="{{ (request()->is('student/profile/*')) ? 'active' : '' }}">Student View</a></li> --}}
                     </ul>
                 </li>
 
@@ -58,9 +60,9 @@
                     </a>
                     <ul>
                         <li><a href="{{ route('teacher/list/page') }}" class="{{set_active(['teacher/list/page','teacher/grid/page'])}}">Teacher List</a></li>
-                        <li><a href="teacher-details.html">Teacher View</a></li>
+                        {{-- <li><a href="teacher-details.html">Teacher View</a></li> --}}
                         <li><a href="{{ route('teacher/add/page') }}" class="{{set_active(['teacher/add/page'])}}">Teacher Add</a></li>
-                        <li><a class="{{ (request()->is('teacher/edit/*')) ? 'active' : '' }}">Teacher Edit</a></li>
+                        {{-- <li><a class="{{ (request()->is('teacher/edit/*')) ? 'active' : '' }}">Teacher Edit</a></li> --}}
                     </ul>
                 </li>
                 
@@ -72,7 +74,7 @@
                     <ul>
                         <li><a href="{{ route('department/list/page') }}" class="{{set_active(['department/list/page'])}} {{ request()->is('department/edit/*') ? 'active' : '' }}">Department List</a></li>
                         <li><a href="{{ route('department/add/page') }}" class="{{set_active(['department/add/page'])}}">Department Add</a></li>
-                        <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li>
+                        {{-- <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li> --}}
                     </ul>
                 </li>
 
@@ -94,23 +96,44 @@
                     'invoice/view/page','invoice/settings/page',
                     'invoice/settings/tax/page','invoice/settings/bank/page'])}}" {{ request()->is('invoice/edit/*') ? 'active' : '' }}>
                     <a href="#"><i class="fas fa-clipboard"></i>
-                        <span> Invoices</span>
+                        <span>programs</span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <ul>
-                        <li><a class="{{set_active(['invoice/list/page','invoice/paid/page','invoice/overdue/page','invoice/draft/page','invoice/recurring/page','invoice/cancelled/page'])}}" href="{{ route('invoice/list/page') }}">Invoices List</a></li>
-                        <li><a class="{{set_active(['invoice/grid/page'])}}" href="{{ route('invoice/grid/page') }}">Invoices Grid</a></li>
-                        <li><a class="{{set_active(['invoice/add/page'])}}" href="{{ route('invoice/add/page') }}">Add Invoices</a></li>
-                        <li><a class="{{ request()->is('invoice/edit/*') ? 'active' : '' }}" href="">Edit Invoices</a></li>
-                        <li> <a class="{{ request()->is('invoice/view/*') ? 'active' : '' }}" href="">Invoices Details</a></li>
-                        <li><a class="{{set_active(['invoice/settings/page','invoice/settings/tax/page','invoice/settings/bank/page'])}}" href="{{ route('invoice/settings/page') }}">Invoices Settings</a></li>
-                    </ul>
-                </li>
+                    <ul class="submenu {{set_active(['program/list','program/add'])}} {{ request()->is('program/edit/*') ? 'active' : '' }}">
+                        <li><a class="{{set_active(['program/list'])}}" href="{{ route('program/list') }}">Programs List</a></li>
+                        <li><a class="{{set_active(['program/add'])}}" href="{{ route('program/add') }}">Programs add</a></li>
+                        <li><a class="{{set_active(['RegistionProgram'])}}" href="{{ route('RegistionProgram') }}">Registration list</a></li>
 
+                    </ul>
+                    <li>
+                        <a href="#"><i class="fas fa-calendar-day"></i>
+                             <span>Events</span>
+                             <span class="menu-arrow"></span>
+                        </a>
+                        <ul>
+                            <li><a class="{{set_active(['event/add'])}}" href="{{ route('event/add') }}">ُEvent add</a></li>
+                            <li><a class="{{set_active(['event/list'])}}" href="{{ route('event/list') }}">Event List</a></li>
+                            <li><a class="{{set_active(['registerShow'])}}" href="{{ route('registerShow') }}">register List</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fas fa-calendar-day"></i>
+                             <span>Messages</span>
+                             <span class="menu-arrow"></span>
+                        </a>
+                        <ul>
+                            <li><a class="{{set_active(['ShowMessages'])}}" href="{{ route('ShowMessages') }}">ُShow Messages</a></li>
+                        </ul>
+
+                    </li>
+
+                </li>
+{{-- 
                 <li class="menu-title">
                     <span>Management</span>
-                </li>
-
+                </li> --}}
+{{-- 
                 <li class="submenu {{set_active(['account/fees/collections/page','add/fees/collection/page'])}}">
                     <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                         <span> Accounts</span>
@@ -140,7 +163,7 @@
                 <li>
                     <a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
                 </li>
-            </ul>
+            </ul> --}}
 
         {{-- -----------------------------------------        Student          ----------------------------------------------------}}
         <ul>
@@ -161,8 +184,8 @@
                         <li><a href="{{ route('teacher/dashboard') }}" class="{{set_active(['teacher/dashboard'])}}">Teacher Dashboard</a></li>
                         <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li>
                     </ul>
-                </li>
-                {{-- @if (Session::get('role_name') === 'Admin' || Session::get('role_name') === 'Super Admin')
+                {{-- </li>
+                @if (Session::get('role_name') === 'Admin' || Session::get('role_name') === 'Super Admin')
                 <li class="submenu {{set_active(['list/users'])}} {{ (request()->is('view/user/edit/*')) ? 'active' : '' }}">
                     <a href="#">
                         <i class="fas fa-shield-alt"></i>
@@ -209,7 +232,7 @@
                     <ul>
                         <li><a href="{{ route('department/list/page') }}" class="{{set_active(['department/list/page'])}} {{ request()->is('department/edit/*') ? 'active' : '' }}">Department List</a></li>
                         <li><a href="{{ route('department/add/page') }}" class="{{set_active(['department/add/page'])}}">Department Add</a></li>
-                        <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li>
+                        {{-- <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li> --}}
                     </ul>
                 </li>
 
@@ -281,9 +304,9 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a href="{{ route('home') }}" class="{{set_active(['home'])}}">Admin Dashboard</a></li>
+                        {{-- <li><a href="{{ route('home') }}" class="{{set_active(['home'])}}">Admin Dashboard</a></li> --}}
                         <li><a href="{{ route('teacher/dashboard') }}" class="{{set_active(['teacher/dashboard'])}}">Teacher Dashboard</a></li>
-                        <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li>
+                        {{-- <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li> --}}
                     </ul>
                 </li>
                 <li class="submenu {{set_active(['student/list','student/grid','student/add/page'])}} {{ (request()->is('student/edit/*')) ? 'active' : '' }} {{ (request()->is('student/profile/*')) ? 'active' : '' }}">
@@ -320,7 +343,7 @@
                     <ul>
                         <li><a href="{{ route('department/list/page') }}" class="{{set_active(['department/list/page'])}} {{ request()->is('department/edit/*') ? 'active' : '' }}">Department List</a></li>
                         <li><a href="{{ route('department/add/page') }}" class="{{set_active(['department/add/page'])}}">Department Add</a></li>
-                        <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li>
+                        {{-- <li><a href="{{ route('department/edit/page') }}" class="{{set_active(['department/edit/page'])}}">Department Edit</a></li> --}}
                     </ul>
                 </li>
 

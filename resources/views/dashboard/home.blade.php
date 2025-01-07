@@ -80,72 +80,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                <div class="card bg-comman w-100">
-                    <div class="card-body">
-                        <div class="db-widgets d-flex justify-content-between align-items-center">
-                            <div class="db-info">
-                                <h6>Revenue</h6>
-                                <h3>$9999</h3>
-                            </div>
-                            <div class="db-icon">
-                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                <div class="card bg-comman w-100">
-                    <div class="card-body">
-                        <div class="db-widgets d-flex justify-content-between align-items-center">
-                            <div class="db-info">
-                                <h6>Revenue</h6>
-                                <h3>$9999</h3>
-                            </div>
-                            <div class="db-icon">
-                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                <div class="card bg-comman w-100">
-                    <div class="card-body">
-                        <div class="db-widgets d-flex justify-content-between align-items-center">
-                            <div class="db-info">
-                                <h6>Revenue</h6>
-                                <h3>$9999</h3>
-                            </div>
-                            <div class="db-icon">
-                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                <div class="card bg-comman w-100">
-                    <div class="card-body">
-                        <div class="db-widgets d-flex justify-content-between align-items-center">
-                            <div class="db-info">
-                                <h6>Revenue</h6>
-                                <h3>$9999</h3>
-                            </div>
-                            <div class="db-icon">
-                                <img src="{{ URL::to('assets/img/icons/dash-icon-04.svg') }}" alt="Dashboard Icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        
+            
     {{------------------------------------Chart---------------------------------------}}
 
-        {{-- <div class="row">
+         <div class="row">
             <div class="col-md-12 col-lg-6">
 
                 <div class="card card-chart">
@@ -194,13 +132,13 @@
                 </div>
 
             </div>
-        </div> --}}
+        </div> 
 
     {{------------------------------------ُEndChart-------------------------------------}}
 
     {{------------------------------------ُstars student--------------------------------}}
 
-        {{-- <div class="row">
+         <div class="row">
             <div class="col-xl-6 d-flex">
 
                 <div class="card flex-fill student-space comman-shadow">
@@ -309,7 +247,7 @@
             </div>
             {{------------------------------------To-do list---------------------------------------}}
 
-            {{-- <div class="col-xl-6 d-flex">
+             <div class="col-xl-6 d-flex">
 
                 <div class="card flex-fill comman-shadow">
                     <div class="card-header d-flex align-items-center">
@@ -373,15 +311,83 @@
                     </div>
                 </div>
 
-            </div> --}}
+            </div> 
 
 
             {{------------------------------------To-do list---------------------------------------}}
 
-        {{-- </div> --}}
+         </div>
 
     {{------------------------------------ُ-End stars student-----------------------------}}
-
+          {{-- <div class="col-12 col-lg-12 col-xl-12 d-flex">
+                            <div class="card flex-fill comman-shadow">
+                                <div class="card-header d-flex align-items-center">
+                                    <h5 class="card-title">Teaching History</h5>
+                                    <ul class="chart-list-out student-ellips">
+                                        <li class="star-menus"><a href="javascript:;"><i
+                                            class="fas fa-ellipsis-v"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="teaching-card">
+                                        <ul class="steps-history">
+                                            <li>Sep22</li>
+                                            <li>Sep23</li>
+                                            <li>Sep24</li>
+                                        </ul>
+                                        <ul class="activity-feed">
+                                            <li class="feed-item d-flex align-items-center">
+                                                <div class="dolor-activity">
+                                                    <span class="feed-text1"><a>Mathematics</a></span>
+                                                    <ul class="teacher-date-list">
+                                                        <li><i class="fas fa-calendar-alt me-2"></i>September 5,
+                                                            2022</li>
+                                                        <li>|</li>
+                                                        <li><i class="fas fa-clock me-2"></i>09:00 am - 10:00 am (60
+                                                            Minutes)</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="activity-btns ms-auto">
+                                                    <button type="submit" class="btn btn-info">In Progress</button>
+                                                </div>
+                                            </li>
+                                            <li class="feed-item d-flex align-items-center">
+                                                <div class="dolor-activity">
+                                                    <span class="feed-text1"><a>Geography </a></span>
+                                                    <ul class="teacher-date-list">
+                                                        <li><i class="fas fa-calendar-alt me-2"></i>September 5,
+                                                            2022</li>
+                                                        <li>|</li>
+                                                        <li><i class="fas fa-clock me-2"></i>09:00 am - 10:00 am (60
+                                                            Minutes)</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="activity-btns ms-auto">
+                                                    <button type="submit" class="btn btn-info">Completed</button>
+                                                </div>
+                                            </li>
+                                            <li class="feed-item d-flex align-items-center">
+                                                <div class="dolor-activity">
+                                                    <span class="feed-text1"><a>Botony</a></span>
+                                                    <ul class="teacher-date-list">
+                                                        <li><i class="fas fa-calendar-alt me-2"></i>September 5,
+                                                            2022</li>
+                                                        <li>|</li>
+                                                        <li><i class="fas fa-clock me-2"></i>09:00 am - 10:00 am (60
+                                                            Minutes)</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="activity-btns ms-auto">
+                                                    <button type="submit" class="btn btn-info">In Progress</button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
     {{------------------------------------ُ-Social networking-----------------------------}}
 
         <div class="row">

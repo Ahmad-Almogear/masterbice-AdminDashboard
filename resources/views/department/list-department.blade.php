@@ -18,7 +18,7 @@
         </div>
 
         <div class="student-group-form">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" id="department_id" placeholder="Search by ID ...">
@@ -39,7 +39,7 @@
                         <button type="btn" class="btn btn-primary">Search</button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -73,6 +73,7 @@
                                     <th class="text-end">Action</th>
                                 </tr>
                             </thead>
+                            
                         </table>
                     </div>
                 </div>
@@ -127,8 +128,8 @@
                 },
                 columns: [
                     {
-                        data: 'department_id',
-                        name: 'department_id',
+                        data: 'id',
+                        name: 'id',
                     },
                     {
                         data: 'department_name',

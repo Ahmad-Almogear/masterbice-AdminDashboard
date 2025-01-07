@@ -30,12 +30,45 @@ class TeacherController extends Controller
         return view('teacher.list-teachers',compact('listTeacher'));
     }
 
+    public function index()
+    {
+        $listTeacher = Teacher::all();
+        return view('teacher.list-teachers',compact('listTeacher'));
+    }
+
     /** teacher Grid */
     public function teacherGrid()
     {
         $teacherGrid = Teacher::all();
         return view('teacher.teachers-grid',compact('teacherGrid'));
     }
+
+    // في TeacherController.php
+    public function getStudentsByTeacher($teacherId)
+    {
+    // استرجاع المعلم بناءً على ID
+    $teacher = Teacher::find($teacherId);
+
+    // إذا لم يتم العثور على المعلم، نرجع استجابة 404
+    if (!$teacher) {
+        return response()->json(['message' => 'Teacher not found'], 404);
+    }
+
+    // الحصول على الأقسام التي يتبع لها المعلم مع الطلاب التابعين لها
+    $departments = $teacher->studentsInDepartments;
+
+    // جمع الطلاب من جميع الأقسام
+    $students = collect();
+    foreach ($departments as $department) {
+        foreach ($department->students as $student) {
+            $students->push($student);
+        }
+    }
+
+    // إرجاع الطلاب كـ JSON
+    return response()->json($students);
+    }
+
 
     /** save record */
     public function saveRecord(Request $request)

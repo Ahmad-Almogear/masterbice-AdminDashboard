@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\RegisterNewUserController;
+use App\Http\Controllers\Auth\LoginNewUserController;
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SubjectController;
@@ -15,9 +17,12 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Setting;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ContactUsController;
-
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProgramRegistionController;
+use App\Http\Controllers\ProgramRegistrationController;
 use Illuminate\Support\Facades\Auth;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +43,11 @@ function set_active( $route ) {
     return Request::path() == $route ? 'active' : '';
 }
 
-Route::get('/', function () {
+Route::get('/admin', function () {
     return view('auth.login');
 });
+
+
 
 Route::group(['middleware'=>'auth'],function()
 {
@@ -48,10 +55,11 @@ Route::group(['middleware'=>'auth'],function()
     {
         return view('home');
     });
-    Route::get('home',function()
-    {
-        return view('home');
-    });
+
+    // Route::get('home',function()
+    // {
+    //     return view('home');
+    // });
 });
 
 Auth::routes();
@@ -68,8 +76,24 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth'],function()
     // ----------------------------- register -------------------------//
     Route::controller(RegisterController::class)->group(function () {
         Route::get('/register', 'register')->name('register');
-        Route::post('/register','storeUser')->name('register');    
+        Route::post('/register','storeUser')->name('register');  
     });
+
+    // ----------------------------- register User -------------------------//
+    Route::controller(RegisterNewUserController::class)->group(function () {
+        Route::get('/registerUser', 'register')->name('registerUser');
+        Route::post('/registerUser','storeUser')->name('registerUser');  
+    });
+
+     // ----------------------------login User ------------------------------//
+    Route::controller(LoginNewUserController::class)->group(function () {
+        Route::get('/login/User', 'login')->name('login/User');
+        Route::post('/login/User', 'authenticate');
+        Route::get('/logout/User', 'logout')->name('logout/User');
+        Route::post('change/password/User', 'changePassword')->name('change/password/User');
+    });
+
+
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'],function()
@@ -106,14 +130,16 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::post('student/add/save', 'studentSave')->name('student/add/save'); // save record student
         Route::get('student/edit/{id}', 'studentEdit'); // view for edit
         Route::post('student/update', 'studentUpdate')->name('student/update'); // update record student
-        Route::post('student/delete', 'studentDelete')->name('student/delete'); // delete record student
+        Route::delete('student/delete', 'studentDelete')->name('student/delete'); // delete record student
         Route::get('student/profile/{id}', 'studentProfile')->middleware('auth'); // profile student
+        Route::get('get-student-list', 'getDataList')->name('get-student-list'); // get data list
+
     });
 
     // ------------------------ teacher -------------------------------//
     Route::controller(TeacherController::class)->group(function () {
         Route::get('teacher/add/page', 'teacherAdd')->middleware('auth')->name('teacher/add/page'); // page teacher
-        Route::get('teacher/list/page', 'teacherList')->middleware('auth')->name('teacher/list/page'); // page teacher
+        Route::get('teacher/list/page', 'index')->middleware('auth')->name('teacher/list/page'); // page teacher
         Route::get('teacher/grid/page', 'teacherGrid')->middleware('auth')->name('teacher/grid/page'); // page grid teacher
         Route::post('teacher/save', 'saveRecord')->middleware('auth')->name('teacher/save'); // save record
         Route::get('teacher/edit/{user_id}', 'editRecord'); // view teacher record
@@ -125,15 +151,20 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
     Route::controller(DepartmentController::class)->group(function () {
         Route::get('department/list/page', 'departmentList')->middleware('auth')->name('department/list/page'); // department/list/page
         Route::get('department/add/page', 'indexDepartment')->middleware('auth')->name('department/add/page'); // page add department
-        Route::get('department/edit/page', 'editDepartment')->middleware('auth')->name('department/edit/page'); // page add department
-
-        //Route::get('department/edit/{department_id}', 'editDepartment'); // page add department
+        Route::get('department/edit/{page}', 'editDepartment')->middleware('auth')->name('department/edit/page'); // page add department
+        Route::get('department/edit/{department_id}', 'editDepartment'); // page add department
+        // Route::get('department/save', 'create')->middleware('auth')->name('department/save');
+        // Route::post('department/save', 'saveRecord')->middleware('auth')->name('department/save'); // department/save
+        Route::get('department/save', 'create')->middleware('auth')->name('department/save');
         Route::post('department/save', 'saveRecord')->middleware('auth')->name('department/save'); // department/save
+
         Route::post('department/update', 'updateRecord')->middleware('auth')->name('department/update'); // department/update
         Route::post('department/delete', 'deleteRecord')->middleware('auth')->name('department/delete'); // department/delete
         Route::get('get-data-list', 'getDataList')->name('get-data-list'); // get data list
 
+
     });
+
 
     // ----------------------- subject -----------------------------//
     Route::controller(SubjectController::class)->group(function () {
@@ -183,14 +214,77 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('/service' ,'service')->name('service');
         Route::get('/team' ,'team')->name('team');
         Route::get('/testimonial' ,'testimonial')->name('testimonial');
-        Route::get('/master' , 'master')->name('master');
-        Route::get('/event' , 'event')->name('event');
-        Route::get('/program' , 'program')->name('program');
+        Route::get('/' , 'master')->name('master');
+        // Route::get('/event' , 'event')->name('event');
         Route::get('/review' , 'review')->name('review');
+        Route::get('/loginTheme' , 'loginTheme')->name('loginTheme');
+        // Route::get('/registerTheme' , 'registerTheme')->name('registerTheme');
+
+
+
+        
+
     });
             // Route::get('/contact' ,'contact')->name('contact');
     Route::get('/contact-us', [ContactUsController::class, 'create'])->name('contact_us.create');
+    Route::get('/contact-us', [ContactUsController::class, 'Title'])->name('contact_us.create');
+
     Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
+    Route::get('/ShowMessages', [ContactUsController::class, 'index'])->name('ShowMessages');
+    Route::delete('/contact-us/{id}', [ContactUsController::class, 'destroy'])->name('contactUs.destroy');
+    // Route::get('/home', [ContactUsController::class, 'index'])->name('homeContact');
+    Route::get('/program/add', [ProgramController::class, 'create'])->name('program/add');
+    Route::post('/program/add', [ProgramController::class, 'store'])->name('program/add');
+    Route::get('program/list',[ProgramController::class, 'index']) ->name('program/list'); // page teacher
+    Route::get('/program' ,[ProgramController::class,'indexShow'])->name('program');
+    Route::get('/RegistionProgram' ,[ProgramRegistrationController::class, 'index'])->name('RegistionProgram');
+    Route::post('/program/register', [ProgramRegistrationController::class, 'register'])->name('/program/register');
+    Route::get('program/edit/{id}', [ProgramController::class, 'programEdit'] )->name('program/edit'); // view for edit programEdit
+    Route::post('Program/delete', [ProgramController::class, 'deleteRecord'])->name('Program/delete'); // subject/delete
+    Route::delete('programs/{id}', [ProgramController::class, 'destroy'])->name('programs.destroy');
+
+
+
+
+
+    Route::get('/event/add', [EventController::class, 'create'])->name('event/add');
+    Route::post('/event/add', [EventController::class, 'store'])->name('event/add');
+    Route::get('/event/list',[EventController::class, 'index']) ->name('event/list'); // page teacher  
+    // Route::get('/event',[EventController::class, 'indexshow']) ->name('event');
+    // Route::get('/event', [EventController::class, 'Title'])->name('eventTitle');
+    Route::prefix('/event')->group(function () {
+        Route::get('/', [EventController::class, 'indexshow'])->name('event');
+        Route::get('/title', [EventController::class, 'Title'])->name('event.title');
+    });
+    Route::post('/event/register', [EventController::class, 'register'])->name('event.register');
+    Route::get('/registerShow', [EventController::class, 'registerShow'])->name('registerShow');
+    Route::delete('event/{id}', [EventController::class, 'destroy'])->name('event/destroy');
+
+
+
+    Route::get('/guardians/create', [GuardianController::class, 'create'])->name('guardians/create');
+    Route::post('/guardians/create', [GuardianController::class, 'store'])->name('guardians/create');
+    // Route::get('', [GuardianController::class, 'create'])->name('guardians/create');
+
+   
+
+    Route::get('/notifications', [ContactUsController::class, 'notifications'])->name('notifications');
+
+
+
+   
+
+
+
+
+
+
+
+
+
+ 
+
+
 
 
 

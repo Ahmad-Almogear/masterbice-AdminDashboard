@@ -27,11 +27,7 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5 class="form-title student-info">Student Information
-                                            <span>
-                                                <a href="javascript:;"><i class="feather-more-vertical"></i></a>
-                                            </span>
-                                        </h5>
+                                        <h5 class="form-title student-info">Student Information</h5>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
@@ -114,9 +110,8 @@
                                             <label>Religion <span class="login-danger">*</span></label>
                                             <select class="form-control select @error('religion') is-invalid @enderror" name="religion">
                                                 <option selected disabled>Please Select Religion </option>
-                                                <option value="Hindu" {{ old('religion') == 'Hindu' ? "selected" :""}}>Hindu</option>
+                                                <option value="Islam" {{ old('religion') == 'Islam' ? "selected" :""}}>Islam</option>
                                                 <option value="Christian" {{ old('religion') == 'Christian' ? "selected" :""}}>Christian</option>
-                                                <option value="Others" {{ old('religion') == 'Others' ? "selected" :""}}>Others</option>
                                             </select>
                                             @error('religion')
                                                 <span class="invalid-feedback" role="alert">
@@ -141,9 +136,9 @@
                                             <label>Class <span class="login-danger">*</span></label>
                                             <select class="form-control select @error('class') is-invalid @enderror" name="class">
                                                 <option selected disabled>Please Select Class </option>
-                                                <option value="12" {{ old('class') == '12' ? "selected" :""}}>12</option>
-                                                <option value="11" {{ old('class') == '11' ? "selected" :""}}>11</option>
-                                                <option value="10" {{ old('class') == '10' ? "selected" :""}}>10</option>
+                                                <option value="A" {{ old('class') == 'A' ? "selected" :""}}>A</option>
+                                                <option value="B" {{ old('class') == 'B' ? "selected" :""}}>B</option>
+                                                <option value="C" {{ old('class') == 'C' ? "selected" :""}}>C</option>
                                             </select>
                                             @error('class')
                                                 <span class="invalid-feedback" role="alert">
@@ -152,16 +147,37 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                    {{-- <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
-                                            <select class="form-control select @error('class') is-invalid @enderror" name="class">
+                                            <select class="form-control select @error('class') is-invalid @enderror" name="department_id">
                                                 <option selected disabled>Please Select Class </option>
-                                                <option value="1" {{ old('department_id') == '1' ? "selected" :""}}>1</option>
-                                                <option value="2" {{ old('department_id') == '2' ? "selected" :""}}>2</option>
-                                                <option value="3" {{ old('department_id') == '3' ? "selected" :""}}>3</option>
+                                                <option value="1" {{ old('department_id') == '1' ? "selected" :""}}>Kg1</option>
+                                                <option value="2" {{ old('department_id') == '2' ? "selected" :""}}>Kg2</option>
+                                                <option value="3" {{ old('department_id') == '3' ? "selected" :""}}>Kg3</option>
                                             </select>
                                             @error('class')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div> --}}
+
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Department Name<span class="login-danger">*</span></label>
+                                            <select class="select select2s-hidden-accessible @error('department_id') is-invalid @enderror"
+                                                style="width: 100%;" tabindex="-1" aria-hidden="true" id="department_name" name="department_id">
+                                                <option selected disabled>-- Select Name --</option>
+                                                @foreach ($DepartmentList as $key => $names)
+                                                    <option value="{{ $names->id }}"
+                                                        {{ old('department_id') == $names->id ? 'selected' : '' }}>
+                                                        {{ $names->department_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('department_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -235,3 +251,10 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        // select auto teacher id
+        $('#department_name').on('change', function() {
+            $('#teacher_id').val($(this).find(':selected').data('id'));
+        });
+    </script>

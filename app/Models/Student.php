@@ -22,6 +22,7 @@ class Student extends Model
         'section',
         'admission_id',
         'phone_number',
+        'guardian_id',
         'upload',
     ];
 

@@ -39,17 +39,17 @@
                 </a>
             </div>
 
-            <div class="top-nav-search">
+            {{-- <div class="top-nav-search">
                 <form>
                     <input type="text" class="form-control" placeholder="Search here">
                     <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                 </form>
-            </div>
+            </div> --}}
             <a class="mobile_btn" id="mobile_btn">
                 <i class="fas fa-bars"></i>
             </a>
              <ul class="nav user-menu">
-                <li class="nav-item dropdown noti-dropdown language-drop me-2">
+                {{-- <li class="nav-item dropdown noti-dropdown language-drop me-2"> --}}
                     {{-- <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown"> --}}
                         {{-- <img src="{{ URL::to('assets/img/icons/header-icon-01.svg') }}" alt=""> --}}
                     </a>
@@ -60,10 +60,11 @@
                                 <a class="dropdown-item" href="javascript:;"><i class="flag flag-kh me-2"></i>Khmer</a>
                             </div>
                         </div>
-                    </div> --}}
-                </li>
+                    </div> 
+                </li>--}}
+                {{-- @include('contactUs.notifications', ['messages' => $messages]) --}}
 
-                <li class="nav-item dropdown noti-dropdown me-2">
+                {{-- <li class="nav-item dropdown noti-dropdown me-2">
                     <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
                         <img src="{{ URL::to('assets/img/icons/header-icon-05.svg') }}" alt="">
                     </a>
@@ -141,7 +142,7 @@
                             <a href="#">View all Notifications</a>
                         </div>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item zoom-screen me-2">
                     <a href="#" class="nav-link header-nav-list win-maximize">
@@ -170,7 +171,7 @@
                             </div>
                         </div>
                         <a class="dropdown-item" href="{{ route('user/profile/page') }}">My Profile</a>
-                        <a class="dropdown-item" href="inbox.html">Inbox</a>
+                        {{-- <a class="dropdown-item" href="inbox.html">Inbox</a> --}}
                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                     </div>
                 </li>
@@ -181,7 +182,7 @@
 		{{-- content page --}}
         @yield('content')
         <footer>
-            <p>Copyright ©  <?php echo date('Y'); ?> Soeng Souy.</p>
+            <p>Copyright ©  <?php echo date('Y'); ?> Ahmad Almogear</p>
         </footer>
     
     </div>

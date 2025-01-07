@@ -28,9 +28,9 @@ class Department extends Model
         return $this->hasMany(Student::class);
     }
     public function teachers()
-{
+    {
     return $this->belongsToMany(Teacher::class, 'department_teacher');
-}
+    }
 
 
     protected static function boot()

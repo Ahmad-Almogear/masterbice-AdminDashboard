@@ -19,7 +19,7 @@
             {{-- message --}}
             {!! Toastr::message() !!}
             <div class="student-group-form">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search by ID ...">
@@ -40,7 +40,7 @@
                             <button type="btn" class="btn btn-primary">Search</button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -65,26 +65,21 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table
-                                    class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                                <table class="table border-0 star-student table-hover table-center mb-0  table-striped" id="dataList">
                                     <thead class="student-thread">
                                         <tr>
-                                            <th>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </th>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Class</th>
-                                            <th>DOB</th>
-                                            <th>Parent Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Address</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Roll Number</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Department</th>
+                                            <th>Date of Birth</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
                                         @foreach ($studentList as $key=>$list )
                                         <tr>
                                             <td>
@@ -105,9 +100,9 @@
                                             </td>
                                             <td>{{ $list->class }} {{ $list->section }}</td>
                                             <td>{{ $list->date_of_birth }}</td>
-                                            <td>Soeng Soeng</td>
-                                            <td>{{ $list->phone_number }}</td>
-                                            <td>110 Sen Sok Steet,PP</td>
+                                            <td>Soeng Soeng</td> --}}
+                                            {{--  <td>{{ $list->phone_number }}</td>
+                                            <td>{{ $list->gender }}</td>
                                             <td class="text-end">
                                                 <div class="actions">
                                                     <a href="{{ url('student/edit/'.$list->id) }}" class="btn btn-sm bg-danger-light">
@@ -120,7 +115,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                    </tbody>
+                                    </tbody>--}}
                                 </table>
                             </div>
                         </div>
@@ -137,19 +132,22 @@
                 <div class="modal-body">
                     <div class="form-header">
                         <h3>Delete Student</h3>
-                        <p>Are you sure want to delete?</p>
+                        <p>Are you sure you want to delete this student?</p>
                     </div>
                     <div class="modal-btn delete-action">
                         <form action="{{ route('student/delete') }}" method="POST">
                             @csrf
+                            @method('delete')
                             <div class="row">
-                                <input type="hidden" name="id" class="e_id" value="">
+                                <!-- Hidden input for student id -->
+                                <input type="hidden" name="user_id" class="e_id" value="">
                                 <input type="hidden" name="avatar" class="e_avatar" value="">
+                                
                                 <div class="col-6">
                                     <button type="submit" class="btn btn-primary continue-btn submit-btn" style="border-radius: 5px !important;">Delete</button>
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" data-bs-dismiss="modal"class="btn btn-primary paid-cancel-btn">Cancel</a>
+                                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -158,17 +156,71 @@
             </div>
         </div>
     </div>
+    
+    
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataList').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                searching: true,
+                ajax: {
+                    url: "{{ route('get-student-list') }}",
+                },
+                columns: [
+                    {
+                        data: 'user_id',
+                        name: 'user_id',
+                    },
+                    {
+                        data: 'first_name',
+                        name: 'first_name',
+                    },
+                    {
+                        data: 'last_name',
+                        name: 'last_name',
+                    },
+                    {
+                        data: 'roll',
+                        name: 'roll',
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                    },
+                    {
+                        data: 'gender',
+                        name: 'gender',
+                    },
+                    {
+                        data: 'department_name',
+                        name: 'department_name',
+                    },
+                    {
+                        data: 'date_of_birth',
+                        name: 'date_of_birth',
+                    },
+                    {
+                        data: 'modify',
+                        name: 'modify',
+                    },
+                ]
+            });
+        });
+    </script>
+    
     @section('script')
 
     {{-- delete js --}}
     <script>
-        $(document).on('click','.student_delete',function()
-        {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.e_avatar').val(_this.find('.avatar').text());
-        });
+       $(document).on('click','.student_delete',function()
+    {
+        var _this = $(this).parents('tr');
+        var studentId = _this.find('.student_id').data('student_id'); // استخدام الـ data-student_id بشكل صحيح
+        $('.e_id').val(studentId);
+    });
     </script>
     @endsection
-
-@endsection
+    @endsection

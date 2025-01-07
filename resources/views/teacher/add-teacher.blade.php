@@ -27,13 +27,13 @@
                                 <div class="col-12">
                                     <h5 class="form-title"><span>Basic Details</span></h5>
                                 </div>
-                                <div class="col-12 col-sm-4">
+                                {{-- <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
                                         <label>Full Name<span class="login-danger">*</span></label>
                                         <select class="select select2s-hidden-accessible @error('full_name') is-invalid @enderror" style="width: 100%;" tabindex="-1" aria-hidden="true" id="full_name" name="full_name">
                                             <option selected disabled>-- Select Name --</option>
                                             @foreach($users as $key => $names)
-                                                <option value="{{ $names->name }}"data-teacher_id={{ $names->user_id }} {{ old('full_name') == $names->name ? "selected" :""}}>{{ $names->name }}</option>
+                                                <option value="{{ $names->name }}" data-teacher_id={{ $names->user_id }} {{ old('full_name') == $names->name ? "selected" :""}}>{{ $names->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('full_name')
@@ -48,6 +48,28 @@
                                         <label>Teacher ID <span class="login-danger">*</span></label>
                                         <input type="text" class="form-control" name="teacher_id" id="teacher_id" placeholder="Teacher ID" value="{{ old('teacher_id') }}" readonly>
                                     </div>
+                                </div> --}}
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Full Name <span class="login-danger">*</span></label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="full_name" placeholder="Full Name" value="{{ old('$names->name') }}">
+                                        @error('id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>id <span class="login-danger">*</span></label>
+                                        <input type="text" class="form-control @error('id') is-invalid @enderror" name="user_id" placeholder="Enter id" value="{{ old('user_id') }}">
+                                        @error('id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
@@ -56,7 +78,6 @@
                                             <option selected disabled>Select Gender</option>
                                             <option value="Female" {{ old('gender') == 'Female' ? "selected" :"Female"}}>Female</option>
                                             <option value="Male" {{ old('gender') == 'Male' ? "selected" :""}}>Male</option>
-                                            <option value="Others" {{ old('gender') == 'Others' ? "selected" :""}}>Others</option>
                                         </select>
                                         @error('gender')
                                             <span class="invalid-feedback" role="alert">
@@ -77,9 +98,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms calendar-icon">
+                                    <div class="form-group local-forms ">
                                         <label>Qualification <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control datetimepicker @error('qualification') is-invalid @enderror" name="qualification" placeholder="DD-MM-YYYY" value="{{ old('qualification') }}">
+                                        <input type="text" class="form-control @error('qualification') is-invalid @enderror" name="qualification" placeholder="qualification" value="{{ old('qualification') }}">
                                         @error('qualification')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -168,6 +189,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
                                 <div class="col-12">
                                     <div class="student-submit">
                                         <button type="submit" class="btn btn-primary">Submit</button>

@@ -18,6 +18,9 @@
 	<link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
 	<script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ URL::to('https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css') }}">
+    <script src="{{ URL::to('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js') }}"></script>
+
 </head>
 
 <body>
@@ -43,6 +46,8 @@
     <script src="{{ URL::to('assets/js/feather.min.js') }}"></script>
     <script src="{{ URL::to('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/script.js') }}"></script>
+   
+
 </body>
 
 </html>

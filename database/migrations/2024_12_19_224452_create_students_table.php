@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('admission_id')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('upload')->nullable();
+            $table->unsignedBigInteger('guardian_id')->nullable(); // تأكد من نوع العمود هنا
+            $table->foreign('guardian_id')->references('id')->on('guardians')->onDelete('set null');
             $table->timestamps();
         });
     }

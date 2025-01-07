@@ -29,7 +29,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Department ID <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" name="department_id" value="{{ $department->department_id }}" readonly>
+                                            <input type="text" class="form-control" name="id" value="{{ $department->id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">

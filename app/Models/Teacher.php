@@ -27,15 +27,21 @@ class Teacher extends Model
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class);
+    return $this->hasMany(Subject::class);
     }
 
     public function grtdes()
     {
-        return $this->hasMany(Grade::class);
+    return $this->hasMany(Grade::class);
     }
+
     public function departments()
     {
     return $this->belongsToMany(Department::class, 'department_teacher');
+    }
+    public function studentsInDepartments()
+    {
+    // نحصل على جميع الأقسام التي يتبع لها المعلم
+    return $this->belongsToMany(Department::class, 'department_teacher')->with('students'); // نسترجع الطلاب المتعلقين بكل قسم
     }
 }

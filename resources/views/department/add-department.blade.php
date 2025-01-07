@@ -33,10 +33,33 @@
                                             <input type="text" class="form-control" name="department_name">
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                    {{-- <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Head of Department <span class="login-danger">*</span></label>
                                             <input type="text" class="form-control" name="head_of_department">
+                                        </div>
+                                    </div> --}}
+
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>head of department<span class="login-danger">*</span></label>
+                                            <select
+                                                class="select select2s-hidden-accessible @error('full_name') is-invalid @enderror"
+                                                style="width: 100%;" tabindex="-1" aria-hidden="true" id="full_name"
+                                                name="head_of_department">
+                                                <option selected disabled>-- Select Name --</option>
+                                                @foreach ($TeacherList as $key => $names)
+                                                    <option value="{{ $names->full_name }}"
+                                                        data-teacher_id={{ $names->user_id }}
+                                                        {{ old('full_name') == $names->full_name ? 'selected' : '' }}>
+                                                        {{ $names->full_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('student_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
@@ -64,4 +87,12 @@
             </div>
         </div>
     </div>
+@section('script')
+    <script>
+        // select auto teacher id
+        $('#full_name').on('change', function() {
+            $('#teacher_id').val($(this).find(':selected').data('teacher_id'));
+        });
+    </script>
+@endsection
 @endsection

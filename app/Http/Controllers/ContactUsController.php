@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ContactUs;
+use App\Models\ContactUS;
 
 
 class ContactUsController extends Controller
@@ -24,7 +24,7 @@ class ContactUsController extends Controller
     ]);
 
     // حفظ البيانات في قاعدة البيانات
-    ContactUs::create([
+    ContactUS::create([
         'name' => $request->input('name'),
         'email' => $request->input('email'),
         'message' => $request->input('message'),
@@ -34,4 +34,42 @@ class ContactUsController extends Controller
     return redirect()->route('contact_us.create')->with('success', 'تم إرسال الرسالة بنجاح');
     }
 
+
+    public function index()
+    {
+        $messages = ContactUS::all();
+        return view('contactUs.list-contactUs',compact('messages'));
+    }
+
+    public function destroy($id)
+    {
+        $message = ContactUS::findOrFail($id);
+        $message->delete(); // حذف الرسالة باستخدام Soft Delete
+
+        // إرجاع استجابة بتنسيق JSON
+        return response()->json(['success' => true]);
+    }
+
+    public function notifications()
+    {
+    // إحضار أحدث 5 رسائل من جدول contact_us
+    $messages = ContactUS::latest()->take(5)->get();
+
+    // تمرير الرسائل إلى الـ View
+    return view('contactUs.notifications', compact('messages'));
+    }
+
+    public function Title()
+    {
+        return view('themes.contact', [
+            'pageTitle' => 'Contact Us',
+            'breadcrumbs' => [
+                ['label' => 'Home', 'url' => route('master')],
+                ['label' => 'Contact Us', 'url' => route('contact_us.create')]
+            ]
+        ]);
+    }
+
+
+    
 }

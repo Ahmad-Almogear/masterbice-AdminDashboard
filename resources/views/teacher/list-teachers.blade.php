@@ -18,7 +18,7 @@
         </div>
 
         <div class="student-group-form">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search by ID ...">
@@ -39,7 +39,7 @@
                         <button type="btn" class="btn btn-primary">Search</button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -51,10 +51,10 @@
                                     <h3 class="page-title">Teachers</h3>
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="teachers.html" class="btn btn-outline-gray me-2 active">
-                                        <i class="fa fa-list" aria-hidden="true"></i>
-                                    <a href="{{ route('teacher/grid/page') }}" class="btn btn-outline-gray me-2">
-                                        <i class="fa fa-th" aria-hidden="true"></i>
+                                    {{-- <a href="teachers.html" class="btn btn-outline-gray me-2 active">
+                                        <i class="fa fa-list" aria-hidden="true"></i> --}}
+                                    {{-- <a href="{{ route('teacher/grid/page') }}" class="btn btn-outline-gray me-2">
+                                        <i class="fa fa-th" aria-hidden="true"></i> --}}
                                     <a href="#" class="btn btn-outline-primary me-2"><i
                                             class="fas fa-download"></i> Download</a>
                                     <a href="{{ route('teacher/add/page') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
@@ -66,17 +66,18 @@
                             <table id="DataList" class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
                                 <thead class="student-thread"> 
                                     <tr>
-                                        <th>
+                                        {{-- <th>
                                             <div class="form-check check-tables">
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
-                                        </th>
+                                        </th> --}}
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Class</th>
                                         <th>Gender</th>
-                                        <th>Subject</th>
-                                        <th>Section</th>
+                                        <th>Date of Birth</th>
+                                        <th>Qualification</th>
+                                        <th>Experience</th>
+                                        <th>State</th>
                                         <th>Mobile Number</th>
                                         <th>Address</th>
                                         <th class="text-end">Action</th>
@@ -84,33 +85,21 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($listTeacher as $list)
-                                    <tr>
+                                    {{-- <tr>
                                         <td>
                                             <div class="form-check check-tables">
                                                 <input class="form-check-input" type="checkbox"
                                                     value="something">
                                             </div>
-                                        </td>
-                                        <td hidden class="user_id
-                                        ">{{ $list->user_id }}</td>
-                                        <td>{{ $list->user_id }}</td>
-                                        <td>
-                                            <h2 class="table-avatar">
-                                                <a href="teacher-details.html" class="avatar avatar-sm me-2">
-                                                    @if (!empty($list->avatar))
-                                                        <img class="avatar-img rounded-circle" src="{{ URL::to('images/'.$list->avatar) }}" alt="{{ $list->name }}">
-                                                    @else
-                                                        <img class="avatar-img rounded-circle" src="{{ URL::to('images/photo_defaults.jpg') }}" alt="{{ $list->name }}">
-                                                    @endif
-                                                </a>
-                                                <a href="teacher-details.html">{{ $list->name }}</a>
-                                            </h2>
-                                        </td>
-                                        <td>10</td>
+                                        </td> --}}
+                                        <td>{{ $list->id }}</td>
+                                        <td>{{ $list->full_name }}</td>
                                         <td>{{ $list->gender }}</td>
-                                        <td>Mathematics</td>
-                                        <td>A</td>
-                                        <td>{{ $list->mobile }}</td>
+                                        <td>{{ $list->date_of_birth }}</td>
+                                        <td>{{ $list->qualification }}</td>
+                                        <td>{{ $list->experience }}</td>
+                                        <td>{{ $list->state }}</td>
+                                        <td>{{ $list->phone_number }}</td>
                                         <td>{{ $list->address }}</td>
                                         <td class="text-end">
                                             <div class="actions">
